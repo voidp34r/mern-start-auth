@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
-
-import { browserHistory } from 'react-router';
-import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -14,8 +11,10 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
+import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import NotificationsIcon from '@material-ui/icons/Notifications';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
@@ -23,34 +22,12 @@ import DomainRoundedIcon from '@material-ui/icons/DomainRounded';
 import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 
-import { ListItem } from '@material-ui/core';
-// Import Style
-// import styles from './App.css';
-
-// Import Components
-import Helmet from 'react-helmet';
-import Header from './components/Header/Header';
-import Authentication from './components/Auth/Authentication';
-import Footer from './components/Footer/Footer';
-
-// Import Actions
-import { toggleAddPost } from './AppActions';
-import { switchLanguage } from '../../modules/Intl/IntlActions';
-
-// Import Selectors
-import { getAuth } from '../Auth/AuthReducer';
-import SingIn from './components/Auth/SingIn';
-
-let DevTools;
-if (process.env.NODE_ENV === 'development') {
-  // eslint-disable-next-line global-require
-  DevTools = require('./components/DevTools').default;
-}
-
-
-// import withRoot from './withRoot';
+import {  ListItem } from '@material-ui/core';
+// import Authentication from '../containers/Authentication';
+// import { logoutUser } from '../../actions/authActions';
 
 const drawerWidth = 240;
+
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -128,23 +105,16 @@ const styles = theme => ({
   },
 });
 
-export class App extends Component {
+
+export class Layout extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      isMounted: false,
       toggleReg: false,
       open: false,
     };
   }
-  componentDidMount() {
-    // eslint-disable-next-line react/no-did-mount-set-state
-    this.setState({ isMounted: true });
-  }
-
-  toggleAddPostSection = () => {
-    this.props.dispatch(toggleAddPost());
-  };
 
   handleDrawerOpen = () => {
     this.setState({ open: true });
@@ -154,30 +124,14 @@ export class App extends Component {
     this.setState({ open: false });
   };
 
-  handelClick = (path) => {
-    // this works. path updates and renders new component
-    browserHistory.push(path);
+  linkRedirect(val) {
+    console.log(val);
   }
+
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <Helmet
-          title="MERN Starter - [ Web APP NodeJS + MongoDB + React + Redux ]"
-          titleTemplate="%s - [ Web APP NodeJS + MongoDB + React + Redux ]"
-          meta={[
-            { charset: 'utf-8' },
-            {
-              'http-equiv': 'X-UA-Compatible',
-              content: 'IE=edge',
-            },
-            {
-              name: 'viewport',
-              content: 'width=device-width, initial-scale=1',
-            },
-          ]}
-        />
-        {/* {this.state.isMounted && !window.devToolsExtension && process.env.NODE_ENV === 'development' && <DevTools />} */}
         <CssBaseline />
         <AppBar
           position="absolute"
@@ -202,15 +156,9 @@ export class App extends Component {
               noWrap
               className={classes.title}
             >
-              {/* [ Web APP NodeJS + MongoDB + React + Redux ] */}
-              <FormattedMessage id="siteTitle" />
+              [ Web APP NodeJS + MongoDB + React + Redux ]
             </Typography>
-            <Header
-              switchLanguage={lang => this.props.dispatch(switchLanguage(lang))}
-              intl={this.props.intl}
-              toggleAddPost={this.toggleAddPostSection}
-            />
-            <Authentication />
+            {/* <Authentication /> */}
           </Toolbar>
         </AppBar>
         <Drawer
@@ -227,73 +175,58 @@ export class App extends Component {
           </div>
           <Divider />
           <List>
-            {/* <NavLink to="/" activeClassName="active">Home</NavLink> */}
-            <ListItem button onClick={() => this.handelClick('/')}>
-              <ListItemIcon>
-                <DashboardIcon />
-              </ListItemIcon>
-              <ListItemText primary="Home" />
-            </ListItem>
+              <ListItem button>
+                <ListItemIcon>
+                  <DashboardIcon />
+                </ListItemIcon>
+                <ListItemText primary="Dashboard" />
+              </ListItem>
 
-            <ListItem button onClick={() => this.handelClick('/home')}>
-              <ListItemIcon>
-                <DashboardIcon />
-              </ListItemIcon>
-              <ListItemText primary="Dashboard" />
-            </ListItem>
+              <ListItem button>
+                <ListItemIcon>
+                  <DomainRoundedIcon />
+                </ListItemIcon>
+                <ListItemText primary="Empresa" />
+              </ListItem>
 
-            <ListItem button onClick={() => this.handelClick('/empresa')}>
-              <ListItemIcon>
-                <DomainRoundedIcon />
-              </ListItemIcon>
-              <ListItemText primary="Empresa" />
-            </ListItem>
+              <ListItem button>
+                <ListItemIcon>
+                  <PeopleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Customers" />
+              </ListItem>
 
-            <ListItem button onClick={() => this.handelClick('/constumers')}>
-              <ListItemIcon>
-                <PeopleIcon />
-              </ListItemIcon>
-              <ListItemText primary="Customers" />
-            </ListItem>
-
-            <ListItem button onClick={() => this.handelClick('/about')}>
-              <ListItemIcon>
-                <BarChartIcon />
-              </ListItemIcon>
-              <ListItemText primary="About" />
-            </ListItem>
+              <ListItem button>
+                <ListItemIcon>
+                  <BarChartIcon />
+                </ListItemIcon>
+                <ListItemText primary="About" />
+              </ListItem>
           </List>
           <Divider />
         </Drawer>
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
-          {this.props.auth.loggedIn ? this.props.children : <SingIn />}
-          <Footer />
+            {this.props.children}
         </main>
       </div>
     );
   }
 }
 
-App.propTypes = {
-  children: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
+Layout.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-// Retrieve data from store as props
-function mapStateToProps(store, state) {
-  return {
-    intl: store.intl,
-    auth: store.auth,
-    loggedIn: store.auth.data.loggedIn,
-    username: store.auth.username,
-    data: store.auth.data,
-    token: store.auth.data.tokenID,
-    authget: getAuth(state),
-  };
-}
+// const mapStateToProps = (state) => ({
+//   loggedIn: state.auth.loggedIn,
+//   username: state.auth.username,
+// });
 
-export default connect(mapStateToProps)(withStyles(styles)(App));
+// const mapDispatchToProps = {
+
+// };
+
+export default (withStyles(styles)(Layout));
+// export default (Layout);
+

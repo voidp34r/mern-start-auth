@@ -17,6 +17,9 @@ if (typeof require.ensure !== 'function') {
 if (process.env.NODE_ENV !== 'production') {
   // Require async routes only in development for react-hot-reloader to work.
   require('./modules/Empresa/Empresa');
+  require('./modules/Empresa/EmpresaHome');
+  require('./modules/App/components/Auth/SingIn');
+  require('./modules/App/components/Auth/Register');
   // require('./modules/Post/pages/PostDetailPage/PostDetailPage');
 }
 
@@ -32,10 +35,42 @@ export default (
       }}
     />
     <Route
-      path="/posts/:slug-:cuid"
+      path="/empresa"
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
           cb(null, require('./modules/Empresa/Empresa').default);
+        });
+      }}
+    />
+    <Route
+      path="/empresa/:cuid"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/Empresa/Empresa').default);
+        });
+      }}
+    />
+    <Route
+      path="/home"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/Empresa/EmpresaHome').default);
+        });
+      }}
+    />
+    <Route
+      path="/login"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/App/components/Auth/SingIn').default);
+        });
+      }}
+    />
+    <Route
+      path="/register"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/App/components/Auth/Register').default);
         });
       }}
     />

@@ -17,6 +17,7 @@ import { toggleAddPost } from '../App/AppActions';
 // Import Selectors
 import { getShowAddPost } from '../App/AppReducer';
 import { getEmpresas } from './EmpresaReducer';
+import EmpresaList from './pages/EmpresaList';
 
 class Empresa extends Component {
   componentDidMount() {
@@ -37,16 +38,7 @@ class Empresa extends Component {
   render() {
     return (
       <div>
-        <div>
-          this.props :{
-            JSON.stringify(this.props)
-          }
-        </div>
-        <div>
-          this.props.empresas : {
-            JSON.stringify(this.props.empresas)
-          }
-        </div>
+        <EmpresaList></EmpresaList>
       </div>
     );
   }

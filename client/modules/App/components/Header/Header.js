@@ -5,21 +5,20 @@ import { FormattedMessage } from 'react-intl';
 
 // Import Style
 import styles from './Header.css';
+import {  Button } from '@material-ui/core';
 
 export function Header(props, context) {
   const languageNodes = props.intl.enabledLanguages.map(
-    lang => <li key={lang} onClick={() => props.switchLanguage(lang)} className={lang === props.intl.locale ? styles.selected : ''}>{lang}</li>
+    lang => <Button key={lang} onClick={() => props.switchLanguage(lang)} className={lang === props.intl.locale ? styles.selected : ''}>{lang}</Button>
   );
 
   return (
     <div className={styles.header}>
       <div className={styles['language-switcher']}>
-        <ul>
-          <li><FormattedMessage id="switchLanguage" /></li>
-          {languageNodes}
-        </ul>
+        <FormattedMessage id="switchLanguage" />
+        {languageNodes}
       </div>
-      <div className={styles.content}>
+      {/* <div className={styles.content}>
         <h1 className={styles['site-title']}>
           <Link to="/" ><FormattedMessage id="siteTitle" /></Link>
         </h1>
@@ -28,7 +27,7 @@ export function Header(props, context) {
             ? <a className={styles['add-post-button']} href="#" onClick={props.toggleAddPost}><FormattedMessage id="addPost" /></a>
             : null
         }
-      </div>
+      </div> */}
     </div>
   );
 }
