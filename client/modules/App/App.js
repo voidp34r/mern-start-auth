@@ -63,10 +63,6 @@ export class App extends Component {
             intl={this.props.intl}
             toggleAddPost={this.toggleAddPostSection}
           />
-          <div>
-
-            auth aqui: {JSON.stringify(this.props.token)}
-          </div>
           <div className={styles.container}>
             {this.props.children}
           </div>

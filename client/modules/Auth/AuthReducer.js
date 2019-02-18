@@ -5,8 +5,8 @@ import { USER_REGISTERED, USER_LOGGEDIN, USER_LOGOUT } from './AuthActions';
 const initialState = { data: [] };
 
 const EmpresaReducer = (state = initialState, action) => {
-  // eslint-disable-next-line
-  let auth = Object.assign({}, state);
+
+  const auth = Object.assign({}, state);
 
   switch (action.type) {
     case USER_REGISTERED :
@@ -46,7 +46,7 @@ const EmpresaReducer = (state = initialState, action) => {
 export const getAuth = state => state.auth;
 
 // Get Empresa by cuid
-// export const getEmpresa = (state, cuid) => state.empresas.data.filter(empresa => empresa.cuid === cuid)[0];
+export const getEmpresa = (state, cuid) => state.empresas.data.filter(empresa => empresa.cuid === cuid)[0];
 
 // Export Reducer
 export default EmpresaReducer;

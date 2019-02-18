@@ -66,6 +66,6 @@ test('calling toggleAddPostSection dispatches toggleAddPost', t => {
   );
 
   wrapper.instance().toggleAddPostSection();
-  t.truthy(dispatch.calledOnce);
+  t.truthy(dispatch.calledWith(toggleAddPost()));
   t.truthy(dispatch.calledWith(toggleAddPost()));
 });
