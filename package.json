@@ -13,6 +13,7 @@
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
     "build:server": "cross-env NODE_ENV=production webpack --config webpack.config.server.js",
     "clean": "rimraf dist",
+    "newclean": "find . -name 'node_modules' -exec rm -rf '{}' + && rm ./yarn.lock ",
     "slate": "rimraf node_modules && npm install",
     "lint": "eslint client server"
   },
@@ -30,6 +31,11 @@
   "homepage": "https://github.com/voidp34r/mern-starter#readme",
   "author": "Matheus Rafael <voidpear@gmail.com>",
   "license": "MIT",
+  "resolutions": {
+    "@devexpress/dx-react-grid/**/@devexpress/dx-core": "1.9.0",
+    "@devexpress/dx-react-grid/**/@devexpress/dx-grid-core": "1.9.0",
+    "ava": "^0.15.2"
+  },
   "dependencies": {
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",

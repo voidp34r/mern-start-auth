@@ -127,7 +127,7 @@ Register.propTypes = {
 };
 
 // eslint-disable-next-line no-unused-varss
-const mapStateToProps = state => {
+const mapStateToProps = () => {
   return {
   };
 };

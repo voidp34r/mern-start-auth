@@ -2,7 +2,8 @@ import callApi from '../../util/apiCaller';
 
 // Export Constants
 export const ADD_EMPRESA = 'ADD_EMPRESA';
-export const ADD_EMPRESAS = 'ADD_EMPRESAS';
+export const GET_EMPRESA = 'GET_EMPRESA';
+export const GET_EMPRESAS = 'GET_EMPRESAS';
 export const DELETE_EMPRESA = 'DELETE_EMPRESA';
 
 // Export Actions
@@ -15,19 +16,17 @@ export function addEmpresa(empresa) {
 
 export function addEmpresaRequest(empresa) {
   return (dispatch) => {
-    return callApi('empresas', 'empresa', {
-      empresa: {
-        name: empresa.name,
-        title: empresa.title,
-        content: empresa.content,
-      },
-    }).then(res => dispatch(addEmpresa(res.empresa)));
+    return callApi('empresas', 'POST', {
+      id: empresa.id,
+      name: empresa.name,
+      sensorData: [empresa.sensorData],
+    }).then(res => dispatch(addEmpresa(res)));
   };
 }
 
-export function addEmpresas(empresas) {
+export function getEmpresas(empresas) {
   return {
-    type: ADD_EMPRESAS,
+    type: GET_EMPRESAS,
     empresas,
   };
 }
@@ -35,14 +34,21 @@ export function addEmpresas(empresas) {
 export function fetchEmpresas() {
   return (dispatch) => {
     return callApi('empresas').then(res => {
-      dispatch(addEmpresas(res.empresas));
+      dispatch(getEmpresas(res.empresas));
     });
+  };
+}
+
+export function getEmpresa(empresa) {
+  return {
+    type: GET_EMPRESA,
+    empresa,
   };
 }
 
 export function fetchEmpresa(cuid) {
   return (dispatch) => {
-    return callApi(`empresas/${cuid}`).then(res => dispatch(addEmpresa(res.empresa)));
+    return callApi(`empresas/${cuid}`).then(res => dispatch(getEmpresa(res.empresa === null ? [] : res.empresa)));
   };
 }
 

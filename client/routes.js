@@ -18,9 +18,16 @@ if (process.env.NODE_ENV !== 'production') {
   // Require async routes only in development for react-hot-reloader to work.
   require('./modules/Empresa/Empresa');
   require('./modules/Empresa/EmpresaHome');
+  require('./modules/Empresa/EmpresaError');
   require('./modules/App/components/Auth/SingIn');
   require('./modules/App/components/Auth/Register');
-  // require('./modules/Post/pages/PostDetailPage/PostDetailPage');
+  require('./modules/Empresa/pages/EmpresaDetails');
+  require('./modules/Empresa/pages/EmpresaAdd');
+  require('./modules/Empresa/pages/EmpresaEdit');
+  // require('./modules/Empresa/pages/SensorData');
+  require('./modules/Sensor/pages/SensorList');
+  require('./modules/Sensor/pages/SensorDetail');
+  require('./modules/Sensor/pages/SensorDataList');
 }
 
 // react-router setup with code-splitting
@@ -28,30 +35,6 @@ if (process.env.NODE_ENV !== 'production') {
 export default (
   <Route path="/" component={App}>
     <IndexRoute
-      getComponent={(nextState, cb) => {
-        require.ensure([], require => {
-          cb(null, require('./modules/Empresa/Empresa').default);
-        });
-      }}
-    />
-    <Route
-      path="/empresa"
-      getComponent={(nextState, cb) => {
-        require.ensure([], require => {
-          cb(null, require('./modules/Empresa/Empresa').default);
-        });
-      }}
-    />
-    <Route
-      path="/empresa/:cuid"
-      getComponent={(nextState, cb) => {
-        require.ensure([], require => {
-          cb(null, require('./modules/Empresa/Empresa').default);
-        });
-      }}
-    />
-    <Route
-      path="/home"
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
           cb(null, require('./modules/Empresa/EmpresaHome').default);
@@ -71,6 +54,78 @@ export default (
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
           cb(null, require('./modules/App/components/Auth/Register').default);
+        });
+      }}
+    />
+    <Route
+      path="/home"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/Empresa/EmpresaHome').default);
+        });
+      }}
+    />
+    <Route
+      path="/empresa"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/Empresa/Empresa').default);
+        });
+      }}
+    />
+    <Route
+      path="/empresa/add"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/Empresa/pages/EmpresaAdd').default);
+        });
+      }}
+    />
+    {/* <Route
+      path="/empresa/*"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/Empresa/EmpresaError').default);
+        });
+      }}
+    /> */}
+    <Route
+      path="/empresa/:cuid"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/Empresa/pages/EmpresaDetails').default);
+        });
+      }}
+    />
+    <Route
+      path="/empresa/:cuid/edit"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/Empresa/pages/EmpresaEdit').default);
+        });
+      }}
+    />
+    <Route
+      path="/empresa/:cuid/sensor"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/Sensor/pages/SensorList').default);
+        });
+      }}
+    />
+    <Route
+      path="/empresa/:cuid/sensor/:sensorUid"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/Sensor/pages/SensorDetail').default);
+        });
+      }}
+    />
+    <Route
+      path="/empresa/:cuid/sensor/:sensorUid/data"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/Sensor/pages/SensorDataList').default);
         });
       }}
     />

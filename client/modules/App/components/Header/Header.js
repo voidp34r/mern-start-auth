@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
 import { FormattedMessage } from 'react-intl';
 
 // Import Style
 import styles from './Header.css';
-import {  Button } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 
-export function Header(props, context) {
+export function Header(props) {
   const languageNodes = props.intl.enabledLanguages.map(
     lang => <Button key={lang} onClick={() => props.switchLanguage(lang)} className={lang === props.intl.locale ? styles.selected : ''}>{lang}</Button>
   );

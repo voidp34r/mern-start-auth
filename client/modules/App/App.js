@@ -31,14 +31,14 @@ import { ListItem } from '@material-ui/core';
 import Helmet from 'react-helmet';
 import Header from './components/Header/Header';
 import Authentication from './components/Auth/Authentication';
-import Footer from './components/Footer/Footer';
+// import Footer from './components/Footer/Footer';
 
 // Import Actions
 import { toggleAddPost } from './AppActions';
 import { switchLanguage } from '../../modules/Intl/IntlActions';
 
 // Import Selectors
-import { getAuth } from '../Auth/AuthReducer';
+import { authLoginRequest } from '../Auth/AuthActions';
 import SingIn from './components/Auth/SingIn';
 
 let DevTools;
@@ -140,6 +140,7 @@ export class App extends Component {
   componentDidMount() {
     // eslint-disable-next-line react/no-did-mount-set-state
     this.setState({ isMounted: true });
+    this.props.dispatch(authLoginRequest({ username: 'admin', password: 'admin' }));
   }
 
   toggleAddPostSection = () => {
@@ -177,7 +178,7 @@ export class App extends Component {
             },
           ]}
         />
-        {/* {this.state.isMounted && !window.devToolsExtension && process.env.NODE_ENV === 'development' && <DevTools />} */}
+        {this.state.isMounted && !window.devToolsExtension && process.env.NODE_ENV === 'development' && <DevTools />}
         <CssBaseline />
         <AppBar
           position="absolute"
@@ -227,7 +228,6 @@ export class App extends Component {
           </div>
           <Divider />
           <List>
-            {/* <NavLink to="/" activeClassName="active">Home</NavLink> */}
             <ListItem button onClick={() => this.handelClick('/')}>
               <ListItemIcon>
                 <DashboardIcon />
@@ -249,7 +249,7 @@ export class App extends Component {
               <ListItemText primary="Empresa" />
             </ListItem>
 
-            <ListItem button onClick={() => this.handelClick('/constumers')}>
+            <ListItem button onClick={() => this.handelClick('/chart')}>
               <ListItemIcon>
                 <PeopleIcon />
               </ListItemIcon>
@@ -268,7 +268,7 @@ export class App extends Component {
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
           {this.props.auth.loggedIn ? this.props.children : <SingIn />}
-          <Footer />
+          {/* <Footer /> */}
         </main>
       </div>
     );
@@ -281,10 +281,11 @@ App.propTypes = {
   intl: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
+  // authget: PropTypes.func.isRequired,
 };
 
 // Retrieve data from store as props
-function mapStateToProps(store, state) {
+function mapStateToProps(store) {
   return {
     intl: store.intl,
     auth: store.auth,
@@ -292,7 +293,7 @@ function mapStateToProps(store, state) {
     username: store.auth.username,
     data: store.auth.data,
     token: store.auth.data.tokenID,
-    authget: getAuth(state),
+    // authget: getAuth(state),
   };
 }
 

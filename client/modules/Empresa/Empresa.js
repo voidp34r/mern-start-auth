@@ -1,55 +1,93 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 // import { bindActionCreators } from 'redux';
 
 
 // Import Style
-// import styles from './Empresa.css';
 
 // Import Components
-// import { EmpresaList } from './pages/EmpresaList';
-
-// Import Actions
-import { addEmpresaRequest, fetchEmpresas, deleteEmpresaRequest } from './EmpresaActions';
-import { toggleAddPost } from '../App/AppActions';
-
-// Import Selectors
-import { getShowAddPost } from '../App/AppReducer';
-import { getEmpresas } from './EmpresaReducer';
 import EmpresaList from './pages/EmpresaList';
 
+// Import Actions
+import { addEmpresaRequest, fetchEmpresas } from './EmpresaActions';
+
+// Import Selectors
+import { Button, List, ListItem, Typography } from '@material-ui/core';
+
 class Empresa extends Component {
+  state = {
+    dummyData: {
+      id: '001',
+      name: 'matrix',
+      sensorData: [{
+        id: 'sensor 001',
+        data: [{
+          temp: 11,
+          datatime: '2019-02-09T00:00:01.488Z',
+        }, {
+          temp: 22,
+          datatime: '2019-02-09T00:00:02.488Z',
+        }],
+      }, {
+        id: 'sensor 001',
+        data: [{
+          temp: 11,
+          datatime: '2019-02-09T00:00:01.488Z',
+        }, {
+          temp: 22,
+          datatime: '2019-02-09T00:00:02.488Z',
+        }],
+      }],
+    },
+  }
   componentDidMount() {
     this.props.dispatch(fetchEmpresas());
   }
 
-  handleDeletePost = post => {
-    if (confirm('Do you want to delete this post')) { // eslint-disable-line
-      this.props.dispatch(deleteEmpresaRequest(post));
-    }
-  };
+  handleAddEmpresa = () => {
+    this.props.dispatch(addEmpresaRequest(this.state.dummyData));
+  }
 
-  handleAddPost = (name, title, content) => {
-    this.props.dispatch(toggleAddPost());
-    this.props.dispatch(addEmpresaRequest({ name, title, content }));
+  handleAddEmpresaPage = () => {
+    browserHistory.push('/empresa/add');
   }
 
   render() {
     return (
-      <div>
-        <EmpresaList></EmpresaList>
+      <div >
+        {/* props:{JSON.stringify(this.props)} */}
+        <List>
+          <ListItem>
+            <Typography>
+              Location: {this.props.route.path}
+            </Typography>
+          </ListItem>
+        </List>
+        {
+          this.props.empresas.length > 0 ? <EmpresaList empresas={this.props.empresas} dispatch={this.props.dispatch} /> : <div>{JSON.stringify(this.props.empresas)}</div>
+        }
+        <List>
+          <ListItem>
+            <Button variant={'contained'} color={'primary'} onClick={() => this.handleAddEmpresaPage()}>Criar empresa | Page</Button>
+          </ListItem>
+          <ListItem>
+            <Button variant={'contained'} color={'primary'} onClick={() => this.handleAddEmpresa()}>Criar empresa random!</Button>
+          </ListItem>
+        </List>
       </div>
     );
   }
 }
-
+// Actions required to provide data for this component to render in sever side.
 Empresa.need = [() => { return fetchEmpresas(); }];
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (store) => {
   return {
-    showAddPost: getShowAddPost(state),
-    empresas: getEmpresas(state),
+    // showAddPost: getShowAddPost(state),
+    empresas: store.empresas.data,
+    // empresaList: getEmpresas(state),
   };
 };
 
@@ -59,10 +97,14 @@ const mapStateToProps = (state) => {
 
 Empresa.propTypes = {
   router: PropTypes.object,
+  route: PropTypes.object,
+  classes: PropTypes.object,
   empresas: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    // sensorData: PropTypes.array.isRequired,
   })).isRequired,
-  showAddPost: PropTypes.bool.isRequired,
+  // showAddPost: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 

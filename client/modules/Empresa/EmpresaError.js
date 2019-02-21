@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-export class EmpresaHome extends Component {
+export class EmpresaError extends Component {
 
   componentDidMount() {}
+
   render() {
     return (
-      <div>Home</div>
+      <div>Error</div>
     );
   }
 }
 
-EmpresaHome
+EmpresaError
 .propTypes = {
   router: PropTypes.object,
   classes: PropTypes.object,
@@ -24,4 +25,4 @@ const mapStateToProps = () => ({
 const mapDispatchToProps = {
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EmpresaHome);
+export default connect(mapStateToProps, mapDispatchToProps)(EmpresaError);

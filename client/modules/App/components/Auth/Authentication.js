@@ -47,11 +47,6 @@ class Authentication extends Component {
 
   }
 
-  // state = {
-  //   anchorEl: null,
-  //   mobileMoreAnchorEl: null,
-  // };
-
   handleProfileMenuOpen = event => {
     this.setState({ anchorEl: event.currentTarget });
   };
@@ -113,7 +108,6 @@ class Authentication extends Component {
           </IconButton>
           <p>Logout</p>
         </MenuItem>
-        {/* <Button variant="contained" onClick={this.logout.bind(this)}>Logout</Button> */}
       </Menu>
     );
 

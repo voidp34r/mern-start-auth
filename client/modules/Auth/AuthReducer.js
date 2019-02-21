@@ -5,7 +5,6 @@ import { USER_REGISTERED, USER_LOGGEDIN, USER_LOGOUT } from './AuthActions';
 const initialState = { data: [] };
 
 const EmpresaReducer = (state = initialState, action) => {
-
   const auth = Object.assign({}, state);
 
   switch (action.type) {
@@ -44,9 +43,6 @@ const EmpresaReducer = (state = initialState, action) => {
 
 // Get all Empresas
 export const getAuth = state => state.auth;
-
-// Get Empresa by cuid
-export const getEmpresa = (state, cuid) => state.empresas.data.filter(empresa => empresa.cuid === cuid)[0];
 
 // Export Reducer
 export default EmpresaReducer;

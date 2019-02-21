@@ -1,5 +1,5 @@
 // Import Actions
-import { ADD_EMPRESA, ADD_EMPRESAS, DELETE_EMPRESA } from './EmpresaActions';
+import { ADD_EMPRESA, GET_EMPRESAS, GET_EMPRESA, DELETE_EMPRESA } from './EmpresaActions';
 
 // Initial State
 const initialState = { data: [] };
@@ -11,14 +11,19 @@ const EmpresaReducer = (state = initialState, action) => {
         data: [action.empresa, ...state.data],
       };
 
-    case ADD_EMPRESAS :
+    case GET_EMPRESAS :
       return {
         data: action.empresas,
       };
 
+    case GET_EMPRESA :
+      return {
+        data: [action.empresa],
+      };
+
     case DELETE_EMPRESA :
       return {
-        data: state.data.filter(empresa => empresa.cuid !== action.cuid),
+        data: state.data.filter(empresa => empresa._id !== action.cuid),
       };
 
     default:
@@ -31,7 +36,7 @@ const EmpresaReducer = (state = initialState, action) => {
 export const getEmpresas = state => state.empresas.data;
 
 // Get Empresa by cuid
-export const getEmpresa = (state, cuid) => state.empresas.data.filter(empresa => empresa.cuid === cuid)[0];
+export const getEmpresa = (state, cuid) => state.empresas.data.filter(empresa => empresa._id === cuid)[0];
 
 // Export Reducer
 export default EmpresaReducer;
