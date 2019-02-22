@@ -54,7 +54,7 @@ module.exports = {
       authToken = jwt.sign({
         username: user.username,
         _id: user._id,
-      }, process.env.JWTSECRET);
+      }, serverConfig.JWTSECRET);
       callback(null, authToken);
     });
   },

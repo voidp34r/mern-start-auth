@@ -95,7 +95,7 @@ class SignIn extends Component {
       <div className={classes.paper}>
         <List>
           <ListItem>
-            <Button variant={"raised"} color={'primary'} onClick={this.showLogin.bind(this)}>Login</Button><Button variant={"raised"} color={'primary'} onClick={this.showReg.bind(this)}>Register</Button>
+            <Button variant={"contained"} color={'primary'} onClick={this.showLogin.bind(this)}>Login</Button><Button variant={"contained"} color={'primary'} onClick={this.showReg.bind(this)}>Register</Button>
           </ListItem>
         </List>
       {this.state.toggleReg ? <Register /> :
@@ -111,7 +111,7 @@ class SignIn extends Component {
             <form className={classes.form}>
               <FormControl margin="normal" required fullWidth>
                 <InputLabel htmlFor="username">Username</InputLabel>
-                <Input id="username" name="email" autoComplete="email" onChange={this.updateDetails.bind(this)} autoFocus />
+                <Input id="username" name="username" autoComplete="username" onChange={this.updateDetails.bind(this)} autoFocus />
               </FormControl>
               <FormControl margin="normal" required fullWidth>
                 <InputLabel htmlFor="password">Password</InputLabel>

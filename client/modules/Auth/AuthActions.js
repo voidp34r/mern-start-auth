@@ -41,11 +41,9 @@ export function authLoginRequest(user) {
 
 export function authRegisterRequest(user) {
   return (dispatch) => {
-    return callApiAuth('/', 'POST', {
-      user: {
-        username: user.username,
-        password: user.password,
-      },
+    return callApiAuth('', 'POST', {
+      username: user.username,
+      password: user.password,
     }).then(res => dispatch(userRegisterIn(res.data)));
   };
 }

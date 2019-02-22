@@ -92,18 +92,18 @@ class Register extends Component {
             <form className={classes.form}>
               <FormControl margin="normal" required fullWidth>
                 <InputLabel htmlFor="username">Username</InputLabel>
-                <Input id="username" name="email" autoComplete="email" onChange={this.updateDetails.bind(this)} autoFocus />
+                <Input id="username" name="username" autoComplete="username" onChange={this.updateDetails.bind(this)} autoFocus />
               </FormControl>
               <FormControl margin="normal" required fullWidth>
                 <InputLabel htmlFor="password">Password</InputLabel>
-                <Input name="password" type="password" id="password" onChange={this.updateDetails.bind(this)} autoComplete="current-password" />
+                <Input name="password" type="password" id="password" onChange={this.updateDetails.bind(this)}/>
               </FormControl>
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
               />
               <Button
-                type="submit"
+                type="button"
                 fullWidth
                 variant="contained"
                 color="primary"
