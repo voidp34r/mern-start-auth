@@ -58,6 +58,7 @@ class SensorDetail extends Component {
             <Button variant={'contained'} onClick={() => browserHistory.push(`/empresa/${this.props.params.cuid}/sensor/${sensor._id}/data`)}>Mostrar</Button>
             <Button variant={'contained'}>Editar</Button>
             <Button variant={'contained'}>Deletar</Button>
+            <Button variant={'contained'} color={'primary'} onClick={() => browserHistory.push(`/empresa/${this.props.params.cuid}/sensor/${sensor._id}/filter`)}>Filter</Button>
           </CardActions>
         </Card>
       </Grid>

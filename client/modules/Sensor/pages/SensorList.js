@@ -60,12 +60,7 @@ class SensorList extends Component {
                                   </ListItem>
                                   <ListItem>
                                     <Typography>
-                                      Leituras: {sensor.data.lengh}
-                                    </Typography>
-                                  </ListItem>
-                                  <ListItem>
-                                    <Typography>
-                                      data: {JSON.stringify(sensor.data)}
+                                      {/* data: {JSON.stringify(sensor.data)} */}
                                     </Typography>
                                   </ListItem>
                                 </List>

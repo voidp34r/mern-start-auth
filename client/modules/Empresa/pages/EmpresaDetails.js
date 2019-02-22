@@ -8,11 +8,23 @@ import { connect } from 'react-redux';
 import { Card, Grid, List, ListItem, Typography, CardActions, Button } from '@material-ui/core';
 
 import { fetchEmpresa } from '../EmpresaActions';
+import { addSensorRequest } from '../../Sensor/SensorActions';
 
 class EmpresaDetails extends Component {
 
   componentDidMount() {
     this.props.dispatch(fetchEmpresa(this.props.params.cuid));
+  }
+
+  dummyData = {
+    id: 'sensor 001',
+    data: [{
+      temp: 11,
+      datatime: '2019-02-09T00:00:01.488Z',
+    }, {
+      temp: 22,
+      datatime: '2019-02-09T00:00:02.488Z',
+    }],
   }
 
   handlerCheck = (empresas) => {
@@ -22,6 +34,14 @@ class EmpresaDetails extends Component {
       return false;
     }
     return false;
+  }
+
+  handleAddSensor = () => {
+    this.props.dispatch(addSensorRequest(this.dummyData, this.props.params.cuid));
+  }
+
+  handleAddSensorPage = () => {
+    browserHistory.push(`/empresa/${this.props.params.cuid}/add`);
   }
   render() {
     const BuildGrid = (
@@ -77,7 +97,10 @@ class EmpresaDetails extends Component {
           </Grid>
         </ListItem>
         <ListItem>
-          item 2
+          <Button variant={'contained'} color={'primary'} onClick={() => this.handleAddSensorPage()}>Criar Sensor | Page</Button>
+        </ListItem>
+        <ListItem>
+          <Button variant={'contained'} color={'primary'} onClick={() => this.handleAddSensor()}>Criar Sensor random!</Button>
         </ListItem>
       </List>
     );

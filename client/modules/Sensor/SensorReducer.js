@@ -7,7 +7,9 @@ const initialState = {};
 const SensorReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_SENSOR:
-      return state;
+      return {
+        data: action.sensor,
+      };
     default:
       return state;
   }

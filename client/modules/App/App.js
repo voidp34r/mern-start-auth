@@ -235,13 +235,6 @@ export class App extends Component {
               <ListItemText primary="Home" />
             </ListItem>
 
-            <ListItem button onClick={() => this.handelClick('/home')}>
-              <ListItemIcon>
-                <DashboardIcon />
-              </ListItemIcon>
-              <ListItemText primary="Dashboard" />
-            </ListItem>
-
             <ListItem button onClick={() => this.handelClick('/empresa')}>
               <ListItemIcon>
                 <DomainRoundedIcon />

@@ -6,18 +6,35 @@ const router = new Router();
 router.route('/test').get(EmpresaController.getSomething);
 
 // Get all Empresas
-router.route('/empresas').get(EmpresaController.getEmpresas);
+router.route('/').get(EmpresaController.getEmpresas);
 
 // Get one Empresa by cuid
-router.route('/empresas/:cuid').get(EmpresaController.getEmpresa);
+router.route('/:cuid').get(EmpresaController.getEmpresa);
 
 // Add a new Empresa
-router.route('/empresas').post(EmpresaController.addEmpresa);
+router.route('/').post(EmpresaController.addEmpresa);
 
 // Update a Empresa
-router.route('/empresas').put(EmpresaController.updateEmpresa);
+router.route('/').put(EmpresaController.updateEmpresa);
 
 // Delete a Empresa by cuid
-router.route('/empresas/:cuid').delete(EmpresaController.deleteEmpresa);
+router.route('/:cuid').delete(EmpresaController.deleteEmpresa);
 
+// Get one Sensor List by cuid
+router.route('/:cuid/sensor').get(EmpresaController.getSensors);
+
+// Get one Sensor List by cuid
+router.route('/:cuid/add').post(EmpresaController.postSensor);
+
+// Get one Sensor  by sensoruid
+router.route('/:cuid/sensor/:sensoruid').get(EmpresaController.getSensorByUid);
+
+// Get data list form Sensor by sensoruid
+router.route('/:cuid/sensor/:sensoruid/data').get(EmpresaController.getDataSensorByUid);
+
+// Post data list to Sensor by sensoruid
+router.route('/:cuid/sensor/:sensoruid/data').post(EmpresaController.postDataSensorByUid);
+
+// get data from Sensor by sensoruid and params
+router.route('/:cuid/sensor/:sensoruid/params').post(EmpresaController.getSensorDataByParams);
 export default router;

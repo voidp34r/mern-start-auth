@@ -46,6 +46,7 @@ import Helmet from 'react-helmet';
 import routes from '../client/routes';
 import { fetchComponentData } from './util/fetchData';
 import empresas from './routes/empresa.routes';
+import sensor from './routes/Sensor.routes';
 import auth from './routes/auth.routes';
 import dummyData from './dummyData';
 import serverConfig from './config';
@@ -71,7 +72,8 @@ app.use(compression());
 app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 app.use(Express.static(path.resolve(__dirname, '../dist/client')));
-app.use('/api', empresas);
+app.use('/api/empresas', empresas);
+app.use('/api/sensor', sensor);
 app.use('/auth', auth);
 
 

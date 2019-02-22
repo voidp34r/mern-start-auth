@@ -25,9 +25,11 @@ if (process.env.NODE_ENV !== 'production') {
   require('./modules/Empresa/pages/EmpresaAdd');
   require('./modules/Empresa/pages/EmpresaEdit');
   // require('./modules/Empresa/pages/SensorData');
+  require('./modules/Sensor/pages/SensorAdd');
   require('./modules/Sensor/pages/SensorList');
   require('./modules/Sensor/pages/SensorDetail');
   require('./modules/Sensor/pages/SensorDataList');
+  require('./modules/Sensor/pages/SensorFilter')
 }
 
 // react-router setup with code-splitting
@@ -98,6 +100,14 @@ export default (
       }}
     />
     <Route
+      path="/empresa/:cuid/add"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/Sensor/pages/SensorAdd').default);
+        });
+      }}
+    />
+    <Route
       path="/empresa/:cuid/edit"
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
@@ -126,6 +136,14 @@ export default (
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
           cb(null, require('./modules/Sensor/pages/SensorDataList').default);
+        });
+      }}
+    />
+    <Route
+      path="/empresa/:cuid/sensor/:sensorUid/filter"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/Sensor/pages/SensorFilter').default);
         });
       }}
     />
