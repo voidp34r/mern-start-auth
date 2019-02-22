@@ -1,35 +1,16 @@
 ![](http://res.cloudinary.com/hashnode/image/upload/w_200/v1466495663/static_imgs/mern/v2/mernio-logo.png)
 
 # mern-starter
-![title](https://travis-ci.org/Hashnode/mern-starter.svg?branch=v2.0.0)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![Discuss on Hashnode](
-https://hashnode.github.io/badges/mern.svg)](https://hashnode.com/n/mern)
 
 
-MERN is a scaffolding tool which makes it easy to build isomorphic apps using Mongo, Express, React and NodeJS. It minimises the setup time and gets you up to speed using proven technologies.
+This project is a scaffolding tool which makes it easy to build isomorphic apps using Mongo, Express, React and NodeJS. It minimises the setup time and gets you up to speed using proven technologies.
 
-- [Website](http://mern.io)
-- [Documentation](http://mern.io/documentation.html)
-- [Discussions](https://hashnode.com/n/mern)
 
-## Road to V3!
-We're on our way towards V3, which will bring a few updates to MERN! We are tracking with the following milestones:
 
-- V2.4.0 -> Webpack 3 and many fixes *Completed* : [list of changes](Changes.md)
-- V2.5.0 -> React V16.x upgrade and propTypes fix
-- V2.6.0 -> React Router V4
-- V2.7.0 -> Webpack upgrade to V4
-- V2.8.0 -> database/mongo/mongoose updates/fixes
-- V2.9.0 -> Express/Server dependencies/code upgrade
-- V3.0.0 -> CLI/devtools optimization (docker, etc.)
 
 ## Quickstart
 
 ```sh
-  npm install -g mern-cli
-  mern init your_new_app
-  cd your_new_app
   npm install
   npm start
 ```
@@ -37,7 +18,7 @@ We're on our way towards V3, which will bring a few updates to MERN! We are trac
 **Note : Please make sure your MongoDB is running.** For MongoDB installation guide see [this](https://docs.mongodb.org/v3.0/installation/). Also `npm6` is required to install dependencies properly.
 
 ## Available Commands
-
+l
 1. `npm run start` - starts the development server with hot reloading enabled
 
 2. `npm run bs` - bundles the code and starts the production server
@@ -54,13 +35,13 @@ We're on our way towards V3, which will bring a few updates to MERN! We are trac
 
 ### Webpack Configs
 
-MERN uses Webpack for bundling modules. There are four types of Webpack configs provided `webpack.config.dev.js` (for development), `webpack.config.prod.js` (for production), `webpack.config.server.js` (for bundling server in production) and `webpack.config.babel.js` (for [babel-plugin-webpack-loaders](https://github.com/istarkov/babel-plugin-webpack-loaders) for server rendering of assets included through webpack).
+This project uses Webpack for bundling modules. There are four types of Webpack configs provided `webpack.config.dev.js` (for development), `webpack.config.prod.js` (for production), `webpack.config.server.js` (for bundling server in production) and `webpack.config.babel.js` (for [babel-plugin-webpack-loaders](https://github.com/istarkov/babel-plugin-webpack-loaders) for server rendering of assets included through webpack).
 
 The Webpack configuration is minimal and beginner-friendly. You can customise and add more features to it for production build.
 
 ### Server
 
-MERN uses express web framework. Our app sits in server.js where we check for NODE_ENV.
+This project uses express web framework. Our app sits in server.js where we check for NODE_ENV.
 
 If NODE_ENV is development, we apply Webpack middlewares for bundling and Hot Module Replacement.
 
@@ -131,32 +112,32 @@ Index.js simply does client side rendering using the data provided from `window.
 Modules are the way of organising different domain-specific modules in the project. A typical module contains the following
 ```
 .
-└── Post
+└── Empresa
     ├── __tests__                    // all the tests for this module goes here
     |   ├── components               // Sub components of this module
-    |   |   ├── Post.spec.js
-    |   |   ├── PostList.spec.js
-    |   |   ├── PostItem.spec.js
-    |   |   └── PostImage.spec.js
+    |   |   ├── Empresa.spec.js
+    |   |   ├── EmpresaList.spec.js
+    |   |   ├── EmpresaDetail.spec.js
+    |   |   └── EmpresaGrid.spec.js
     |   ├── pages
-    |   |   ├── PostPage.spec.js
-    |   |   └── PostViewPage.spec.js
-    |   ├── PostReducer.spec.js
-    |   └── PostActions.spec.js
+    |   |   ├── EmpresaPage.spec.js
+    |   |   └── EmpresaViewPage.spec.js
+    |   ├── EmpresaReducer.spec.js
+    |   └── EmpresaActions.spec.js
     ├── components                   // Sub components of this module
-    |   ├── Post.js
-    |   ├── PostList.js
-    |   ├── PostItem.js
-    |   └── PostImage.js
+    |   ├── Empresa.js
+    |   ├── EmpresaList.js
+    |   ├── EmpresaDatail.js
+    |   └── Empresa Grid.js
     ├── pages                        // React Router Pages from this module
-    |   ├── PostPage
-    |   |   ├── PostPage.js
-    |   |   └── PostPage.css
-    |   └── PostViewPage
-    |       ├── PostViewPage.js
-    |       └── PostViewPage.css
-    ├── PostReducer.js
-    └── PostActions.js
+    |   ├── EmpresaPage
+    |   |   ├── EmpresaPage.js
+    |   |   └── EmpresaPage.css
+    |   └── EmpresaViewPage
+    |       ├── EmpresaViewPage.js
+    |       └── EmpresaViewPage.css
+    ├── EmpresaReducer.js
+    └── EmpresaActions.js
 ```
 
 ## Misc
@@ -190,12 +171,12 @@ To reset the database:
 docker-compose down --volumes
 ```
 
-### Make your MERN
+### Make your MERN project
 In this version, we enabled the `mern-cli` to clone not only this project but also the variants of `mern-starter` like one project with MaterialUI or JWT auth. To make your version of MERN, follow these steps
 
 1. Clone this project
     ```sh
-    git clone https://github.com/Hashnode/mern-starter
+    git clone https://github.com/voidp34r/mern-starter-auth
     ```
 
 2. Make your changes. Add a package, add authentication, modify the file structure, replace Redux with MobX or anything else.
@@ -204,7 +185,7 @@ In this version, we enabled the `mern-cli` to clone not only this project but al
 
 4. Next clone `mern-cli` project
     ```sh
-    git clone https://github.com/Hashnode/mern-cli
+    git clone https://github.com/voidp34r/mern-cli
     ```
 
 5. Add your project details to `variants.json` in the cloned project and send a pull request.
@@ -272,4 +253,4 @@ In development, after all scripts get loaded, react loads the CSS as BLOBs. That
 This warning is visible only on development and totally harmless. This occurs to hash difference in `react-router`. To solve it, react router docs asks you to use `match` function. If we use `match`, `react-hot-reloader` stops working.
 
 ## License
-MERN is released under the [MIT License](http://www.opensource.org/licenses/MIT).
+This project is released under the [MIT License](http://www.opensource.org/licenses/MIT).
