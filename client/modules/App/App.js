@@ -140,7 +140,7 @@ export class App extends Component {
   componentDidMount() {
     // eslint-disable-next-line react/no-did-mount-set-state
     this.setState({ isMounted: true });
-    this.props.dispatch(authLoginRequest({ username: 'admin', password: 'admin' }));
+    // this.props.dispatch(authLoginRequest({ username: 'admin', password: 'admin' }));
   }
 
   toggleAddPostSection = () => {
