@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
-
 import { connect } from 'react-redux';
 
 import { Card, Grid, List, ListItem, Typography, CardActions, Button, CardContent } from '@material-ui/core';
 
 import { fetchEmpresa } from '../../../modules/Empresa/EmpresaActions';
 
+import SensorChart from './SensorChart';
 class SensorDetail extends Component {
 
   componentDidMount() {
@@ -48,7 +48,7 @@ class SensorDetail extends Component {
               </ListItem>
               <ListItem>
                 <Typography>
-                  data: {JSON.stringify(sensor.data)}
+                N leituras: {sensor.data.length}
                 </Typography>
               </ListItem>
             </List>
@@ -75,17 +75,32 @@ class SensorDetail extends Component {
               {
                 this.props.empresas.map((empresa, key) => {
                   return (
-                    <Grid key={key} container justify="center" spacing={Number(16)} direction={'row'} alignItems={'center'} >
+                    <div>
+                      <Grid key={key} container justify="center" spacing={Number(16)} direction={'row'} alignItems={'center'} >
                       {empresa.sensorData.map((sensor, k) => {
                         return sensor._id === this.props.params.sensorUid ? buildSensor(sensor, k) : <div></div>;
                       })}
-                    </Grid>
+                      </Grid>
+                      {/* {empresa.sensorData.map((sensor, k) => {
+                        return sensor._id === this.props.params.sensorUid ? <SensorChart data={sensor.data} key={k} /> : <div></div>;
+                      })} */}
+                    </div>
                   );
                 })
               }
         </ListItem>
         <ListItem>
-          item 2
+          {
+            this.props.empresas.map((empresa) => {
+              return (
+                <div>
+                  {empresa.sensorData.map((sensor, k) => {
+                    return sensor._id === this.props.params.sensorUid ? <SensorChart data={sensor.data} key={k} /> : <div></div>;
+                  })}
+                </div>
+              );
+            })
+          }
         </ListItem>
       </List>
     );
