@@ -16,6 +16,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Register from './Register';
+import { List, ListItem } from '@material-ui/core';
 
 const styles = theme => ({
   main: {
@@ -92,7 +93,11 @@ class SignIn extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.paper}>
-        {/* <Button onClick={this.showLogin.bind(this)}>Login</Button><Button onClick={this.showReg.bind(this)}>Register</Button> */}
+        <List>
+          <ListItem>
+            <Button variant={"raised"} color={'primary'} onClick={this.showLogin.bind(this)}>Login</Button><Button variant={"raised"} color={'primary'} onClick={this.showReg.bind(this)}>Register</Button>
+          </ListItem>
+        </List>
       {this.state.toggleReg ? <Register /> :
         <main className={classes.main}>
           <CssBaseline />
